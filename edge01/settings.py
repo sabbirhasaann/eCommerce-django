@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 EXTERNAL_APP = [
     'app01',
     'product',
+    'core',
+    'item',
 ]
 
 INSTALLED_APPS += EXTERNAL_APP
@@ -83,11 +85,14 @@ WSGI_APPLICATION = 'edge01.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'edge-django-first',         # Replace with your database name
+        'USER': 'postgres',         # Replace with your PostgreSQL username
+        'PASSWORD': 'Docker#PostgreSQL@', # Replace with your PostgreSQL password
+        'HOST': 'localhost',            # Or your DB host
+        'PORT': '5432',                 # Default PostgreSQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
