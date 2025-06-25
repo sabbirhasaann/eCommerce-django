@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=h^@@3-=i)ct44j^!b=i9pmjrl+33$-1442%=e78*j^&_@eo3w'
+SECRET_KEY = os.getenv('APP_SECURITY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,12 +88,8 @@ WSGI_APPLICATION = 'edge01.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'edge-django-first',         # Replace with your database name
-        'USER': 'postgres',         # Replace with your PostgreSQL username
-        'PASSWORD': 'Docker#PostgreSQL@', # Replace with your PostgreSQL password
-        'HOST': 'localhost',            # Or your DB host
-        'PORT': '5432',                 # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
