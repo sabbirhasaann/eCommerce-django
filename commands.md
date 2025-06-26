@@ -10,3 +10,6 @@
 8. python manage.py runserver
 9. pip install psycopg2
 10. pip install psycopg
+11. gh pr create --base main --head bootstrap-template --title "" --body ""
+
+gh pr create --base main --head bootstrap-template --title "static,template,staticfiles_dirs,load static done next tast to add static images" --body "Good to go next step"
