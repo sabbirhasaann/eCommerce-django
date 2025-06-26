@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
+def index1(request):
     return HttpResponse('Hello Edge 01')
 
 
@@ -14,3 +14,7 @@ def index(request):
 
 def page01(request):
     return HttpResponse('Class 01 running')
+
+def index(request):
+    """Main html File"""
+    return render(request, "index.html")
