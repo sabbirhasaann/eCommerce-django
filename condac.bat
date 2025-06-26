@@ -1,0 +1,2 @@
+@echo off
+conda deactivate

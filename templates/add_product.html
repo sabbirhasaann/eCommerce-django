@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+  Add Product
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">Add Item</div>
+          <div class="card-body">
+            <form method="POST" action="{% url 'added_product' %}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" />
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" />
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="sale" class="form-label">Sale</label>
+                <input type="text" class="form-control" id="sale" />
+              </div>
+
+              <div class="mb-3">
+                <label for="label" class="form-label">Label</label>
+                <input type="text" class="form-control" id="label" />
+              </div>
+
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input type="text" class="form-control" id="category" />
+              </div>
+
+              <div class="mb-3">
+                <label for="oldp" class="form-label">Old Price</label>
+                <input type="number" class="form-control" id="oldp" />
+              </div>
+
+              <div class="mb-3">
+                <label for="newp" class="form-label">New Price</label>
+                <input type="number" class="form-control" id="newp" />
+              </div>
+
+              <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="number" class="form-control" id="rating" />
+              </div>
+
+              <button type="submit" class="btn btn-success mt-2">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
