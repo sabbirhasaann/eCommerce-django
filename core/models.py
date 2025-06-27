@@ -46,4 +46,3 @@ class Product(models.Model):
     old_price = models.FloatField()
     new_price = models.FloatField()
     rating = models.IntegerField()
-    tooltip = models.CharField()

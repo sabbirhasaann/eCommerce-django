@@ -40,4 +40,6 @@ def added_product(request):
     if request.method == "POST":
 
         name = request.POST.get('name')
-    return HttpResponse(name)
+        image = request.POST.get('image')
+        rating = request.POST.get('rating')
+    return HttpResponse(f"{name} + {image} + {rating}")
