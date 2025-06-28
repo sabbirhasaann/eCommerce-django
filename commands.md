@@ -27,3 +27,5 @@
 13. conda deactivate
 
 14. python manage.py shell
+
+15. gh pr create --base main --head add-cart --title "revert add cart option" --body "revert add cart option"
