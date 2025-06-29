@@ -47,6 +47,7 @@ EXTERNAL_APP = [
     'product',
     'core',
     'item',
+    'accounts',
 ]
 
 INSTALLED_APPS += EXTERNAL_APP
@@ -137,4 +138,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+# settings.py
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
