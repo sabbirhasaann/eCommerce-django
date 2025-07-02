@@ -43,7 +43,7 @@
                       <img src="{% static './img/' %}{{ product.image }}" alt="{{ product.name }}" />
                       <div class="product-label">
                         <span class="sale">{{ product.label.sale }}</span>
-                        <span class="new">{{ product.label.isnew }}</span>
+                        <span class="new">{% if product.label.isnew %}New{% endif %}</span>
                       </div>
                     </div>
                     <div class="product-body">

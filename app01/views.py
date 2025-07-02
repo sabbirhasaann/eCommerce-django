@@ -18,77 +18,89 @@ dummy_products = [
         "name": "Product 01",
         "label": {
             "sale": "-30%",
-            "isnew": "NEW"
+            "isnew": True
         },
         "category": "Laptop",
         "price": {
             "new": 990,
             "old": 980
         },
-        "rating": 5
+        "rating": 5,
+        "topselling": True
     },
     {
         "image": "product02.png",
         "name": "Product 02",
         "label": {
             "sale": "-20%",
-            "isnew": "NEW"
+            "isnew": False
         },
         "category": "Computer",
         "price": {
             "new": 850,
             "old": 900
         },
-        "rating": 4
+        "rating": 4,
+        "topselling": True,
     },
     {
         "image": "product03.png",
         "name": "Product 03",
         "label": {
             "sale": "-20%",
-            "isnew": "NEW"
+            "isnew": True
         },
         "category": "Computer",
         "price": {
             "new": 850,
             "old": 900
         },
-        "rating": 4
+        "rating": 4,
+        "topselling":True,
     },
     {
         "image": "product04.png",
         "name": "Product 04",
         "label": {
             "sale": "-20%",
-            "isnew": "NEW"
+            "isnew": False
         },
         "category": "Computer",
         "price": {
             "new": 850,
             "old": 900
         },
-        "rating": 4
+        "rating": 4,
+        "topselling": False,
     },
     {
         "image": "product05.png",
         "name": "Product 05",
         "label": {
             "sale": "-20%",
-            "isnew": "NEW"
+            "isnew": True
         },
         "category": "Computer",
         "price": {
             "new": 850,
             "old": 900
         },
-        "rating": 4
+        "rating": 4,
+        "topselling": False
     },
 
 ]
+
+new_dummy_products = [product for product in dummy_products if product["label"]["isnew"]]
+topselling_dummy_products = [product for product in dummy_products if product.get("topselling", False)]
 
 def page01(request):
     return HttpResponse('Class 01 running')
 
 def index(request):
     """Main html File"""
-    return render(request, "index.html", {"products": dummy_products})
+    return render(request, "index.html",
+                  {
+                    "products": new_dummy_products,
+                    "topproducts": topselling_dummy_products,
+                  })
