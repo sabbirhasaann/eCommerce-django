@@ -25,6 +25,8 @@ dummy_product = [
     },
 ]
 
+
+
 def product_list(request):
     """Product List Function"""
     print(dummy_product)
