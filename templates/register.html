@@ -1,0 +1,38 @@
+{% extends 'accounts/base.html' %}
+{% block title %}
+  Register
+{% endblock %}
+{% block content %}
+  <div class="mt-5"></div>
+  <div class="container">
+    <div class="d-flex">
+      <div class="w-50"></div>
+      <div class="mt-5 text-center w-50">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="mb-3">Register</h2>
+            <form action="" method="post">
+              {% csrf_token %}
+              <p>
+                <input type="email" class="form-control" name="email" placeholder="Email" />
+              </p>
+              <p>
+                <input type="text" class="form-control" name="username" placeholder="Username" />
+              </p>
+              <p>
+                <input type="password" class="form-control" name="password" placeholder="Password" />
+              </p>
+              <p>
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" />
+              </p>
+              <button type="submit" class="btn btn-success">Register</button>
+              <p>
+                Already have an account? <span><a href="{% url 'login' %}">Login</a></span>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

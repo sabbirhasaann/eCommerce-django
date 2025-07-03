@@ -43,5 +43,13 @@ def added_product(request):
 
         name = request.POST.get('name')
         image = request.POST.get('image')
+        sale = request.POST.get('sale')
+        isnew = request.POST.get('isnew')
+        category = request.POST.get('category')
+        price_old = request.POST.get('price_old')
+        price_new = request.POST.get('price_new')
+        is_topselling = request.POST.get('topselling')
         rating = request.POST.get('rating')
-    return HttpResponse(f"{name} + {image} + {rating}")
+
+
+    return HttpResponse(f"{name} + {image} +{ sale }+{isnew}+ {category} + {price_old} + {price_new}+{is_topselling}+ {rating}" )
