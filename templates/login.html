@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+{% block title %}
+  Login
+{% endblock %}
+{% block content %}
+  <div style="margin-top: 80px;"></div>
+  <div class="container">
+    <div class="d-flex">
+      <div class="w-25"></div>
+      <div class="card shadow-md w-50">
+        <div class="card-body text-center">
+          <h2>Login</h2>
+          <form action="" method="post">
+            {% csrf_token %}
+            <p>
+              <input type="email" class="form-control" name="email" placeholder="Email" />
+            </p>
+            <p>
+              <input type="password" class="form-control" name="password" placeholder="Password" />
+            </p>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p>
+              Don't have an account? <span><a href="{% url 'register' %}">Register</a></span>
+            </p>
+          </form>
+        </div>
+      </div>
+      <div class="w-25"></div>
+    </div>
+  </div>
+{% endblock %}
