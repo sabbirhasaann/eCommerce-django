@@ -4,7 +4,7 @@ from . import views
 from . import session_view
 
 
-from .api_views import CustomLoginView
+from .api_views import CustomLoginView, ProtectedView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 
@@ -22,4 +22,5 @@ urlpatterns = [
 urlpatterns += [
     path('api/token/', CustomLoginView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/protected/', ProtectedView.as_view(), name='protected-view')
 ]
