@@ -1,4 +1,5 @@
 from django.shortcuts import HttpResponse, redirect, render
+from .models import Product
 
 # Create your views here.
 
@@ -44,12 +45,23 @@ def added_product(request):
         name = request.POST.get('name')
         image = request.POST.get('image')
         sale = request.POST.get('sale')
-        isnew = request.POST.get('isnew')
+        isnew = request.POST.get('isnew') == 'on'
         category = request.POST.get('category')
         price_old = request.POST.get('price_old')
         price_new = request.POST.get('price_new')
-        is_topselling = request.POST.get('topselling')
+        is_topselling = request.POST.get('topselling') == 'on'
         rating = request.POST.get('rating')
 
-
-    return HttpResponse(f"{name} + {image} +{ sale }+{isnew}+ {category} + {price_old} + {price_new}+{is_topselling}+ {rating}" )
+        Product.objects.create(
+            image=image,
+            name=name,
+            sale=sale,
+            isnew=isnew,
+            category=category,
+            price_new=price_new,
+            price_old=price_old,
+            rating=rating,
+            topselling=is_topselling
+        )
+        return redirect('dashboard')
+    return redirect('add-product')

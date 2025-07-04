@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from product.models import Product
 
 # Create your views here.
 
@@ -99,8 +100,10 @@ def page01(request):
 
 def index(request):
     """Main html File"""
+    products = Product.objects.all()
+    print(products)
     return render(request, "index.html",
                   {
-                    "products": new_dummy_products,
-                    "topproducts": topselling_dummy_products,
+                    "products": products,
+                    "topproducts": products,
                   })
