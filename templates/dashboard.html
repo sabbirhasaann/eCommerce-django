@@ -3,6 +3,9 @@
   Dashboard
 {% endblock %}
 {% block content %}
+  <div class="">
+    <a href="{% url 'add-product' %}" class="btn btn-primary">Add Product</a>
+  </div>
   <h2>Welcome, {{ user.username }}!</h2>
   <p>This is your dashboard. Only logged-in users can see this.</p>
 {% endblock %}
