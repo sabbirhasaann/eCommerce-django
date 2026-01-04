@@ -3,59 +3,209 @@
   Add Product
 {% endblock %}
 
+{% block head %}
+<meta name="csrf-token" content="{{ csrf_token }}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<style>
+  body { background: #f8fafc; }
+  .card { border-radius: 1.25rem; box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.08); }
+  .card-header { background: #fff; border-bottom: none; border-radius: 1.25rem 1.25rem 0 0; }
+  .form-label { font-weight: 500; }
+  .table-modern {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.08);
+    background: #fff;
+  }
+  .table-modern th, .table-modern td {
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+  }
+  .custom-font-wt{
+    font-weight: bold;
+  }
+</style>
+{% endblock  %}
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form method="POST" action="{% url 'added_product' %}">
-          {% csrf_token %}
-          <p class="mb-3">
-            <label for="name" class="form-label">Product Name</label>
-            <input type="text" class="form-control" id="name" name="name" />
-          </p>
-          <p class="mb-3">
-            <label for="image" class="form-label">Image Name</label>
-            <input type="text" class="form-control" id="image" name="image" />
-          </p>
 
-          <p class="mb-3 mt-3">
-            <label for="sale" class="form-label">Sale</label>
-            <input type="number" class="form-control" id="sale" name="sale" />
-          </p>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="container d-flex align-items-center justify-content-center" style="min-height:70vh;">
+      <div class="col-lg-7 col-md-9 mx-auto">
+        <div class="card border border-secondary mt-5">
+          <div class="card-header text-center pb-0">
+            <h3 class="mb-0 mt-4">Add Product</h3>
+          </div>
+          <div class="card-body">
+            <form id="productForm" enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Product Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" name="name" />
+                </div>
+                <div class="col-md-6">
+                  <label for="image" class="form-label">Image <span class="text-danger">*</span></label>
+                  <input type="file" class="form-control" id="image" name="image" />
+                </div>
+                <div class="col-md-4">
+                  <label for="sale" class="form-label">Sale</label>
+                  <input type="number" class="form-control" id="sale" name="sale" />
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                  <div class="form-check">
+                    <input type="checkbox" class="btn-check" id="isnew" autocomplete="off" name="isnew" />
+                    <label class="btn btn-outline-primary" for="isnew">Is New</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="category" name="category" />
+                </div>
+                <div class="col-md-6">
+                  <label for="price_old" class="form-label">Old Price <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="price_old" name="price_old" />
+                </div>
+                <div class="col-md-6">
+                  <label for="price_new" class="form-label">New Price <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="price_new" name="price_new" />
+                </div>
+                <div class="col-md-6">
+                  <label for="rating" class="form-label">Rating <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="rating" name="rating" />
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                  <div class="form-check">
+                    <input type="checkbox" class="btn-check" id="topselling" autocomplete="off" name="topselling" />
+                    <label class="btn btn-outline-primary" for="topselling">Is Top Selling</label>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn-lg btn-success px-5 py-2 fw-bold btn-create-custom">Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
 
-          <p class="mb-3">
-            <input type="checkbox" class="btn-check" id="isnew" autocomplete="off" name="isnew" />
-            <label class="btn btn-outline-primary" for="isnew">Is New</label>
-          </p>
 
-          <p class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <input type="text" class="form-control" id="category" name="category" />
-          </p>
+    <div class="row mt-5">
 
-          <p class="mb-3">
-            <label for="price_old" class="form-label">Old Price</label>
-            <input type="number" class="form-control" id="price_old" name="price_old" />
-          </p>
+      <div class="col-md-8 fw-bold d-flex .custom-font-wt">
+        <span>Product List</span>
+      </div>
 
-          <p class="mb-3">
-            <label for="price_new" class="form-label">New Price</label>
-            <input type="number" class="form-control" id="price_new" name="price_new" />
-          </p>
+      <div class="col-4 text-end">
+        <button class="btn btn-primary" id="printPdf" type="button">Print PDF</button>
+      </div>
 
-          <p class="mb-3">
-            <label for="rating" class="form-label">Rating</label>
-            <input type="number" class="form-control" id="rating" name="rating" />
-          </p>
-
-          <p>
-            <input type="checkbox" class="btn-check" id="topselling" autocomplete="off" name="topselling" />
-            <label class="btn btn-outline-primary" for="topselling">Is Top Selling</label>
-          </p>
-
-          <button type="submit" class="btn btn-success mt-2">Create</button>
-        </form>
+      <div class="col-12">
+        <div class="table-responsive">
+          <table class="table table-modern table-bordered table-hover align-middle w-100">
+            <thead class="table-light">
+              <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Sale</th>
+                <th>New</th>
+                <th>Category</th>
+                <th>New Price</th>
+                <th>Old Price</th>
+                <th>Rating</th>
+                <th>Top Selling</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productList">
+              {% for product in products %}
+                <tr data-id="{{ product.id }}">
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.image }}</td>
+                  <td>{{ product.sale }}</td>
+                  <td>{% if product.isnew %}New Product{% endif %}</td>
+                  <td>{{ product.category }}</td>
+                  <td>{{ product.price_new }}</td>
+                  <td>{{ product.price_old }}</td>
+                  <td>{{ product.rating }}</td>
+                  <td>{% if product.topselling %}Top Selling{% endif %}</td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary editBtn">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger deleteBtn">Delete</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+
+
+
+  <script>
+    const csrftoken = document.querySelector('[name=csrf-token]').content;
+
+    $('#productForm').submit(function(e) {
+      e.preventDefault();
+      var formData = new FormData(this);
+      $.ajax({
+        url: '/product/add/new',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {'X-CSRFToken': csrftoken},
+        success: function(data) {
+          $('#productList').append(`<li data-id="${data.id}">${data.name} - ${data.image} - ${data.sale} - ${data.isnew} - ${data.category} - ${data.price_new} - ${data.price_old} - ${data.rating} - ${data.topselling}
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button></li>`);
+          $('#productForm')[0].reset();
+        }
+      });
+    });
+
+    $('#printPdf').click(function() {
+      const rows = [];
+      // Get table headers (exclude last two columns)
+      const headers = [];
+      $('#productList').closest('table').find('thead th').each(function(i) {
+        if (i < 8) headers.push($(this).text().trim());
+      });
+      rows.push(headers);
+      // Get table rows (exclude last two columns)
+      $('#productList tr').each(function() {
+        const row = [];
+        $(this).find('td').each(function(i) {
+          if (i < 8) row.push($(this).text().trim());
+        });
+        rows.push(row);
+      });
+      const docDefinition = {
+        content: [
+          { text: 'Product List', style: 'header' },
+          {
+            table: {
+              headerRows: 1,
+              widths: Array(rows[0].length).fill('*'),
+              body: rows
+            }
+          }
+        ],
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 0, 0, 10]
+          }
+        }
+      };
+      pdfMake.createPdf(docDefinition).download('product_list.pdf');
+    });
+  </script>
 {% endblock %}

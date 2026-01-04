@@ -1,0 +1,59 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+  Add Category
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div style="margin:12rem;"></div>
+    <div class="row m-4 d-flex justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="display-4">Add Your Category!</div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card shadow">
+          <div class="card-header">Category</div>
+          <div class="card-body">
+            <form id="contactForm" action="" class="">
+              {% csrf_token %}
+              <div class="mb-4">
+                <input type="text" class="form-control" placeholder="Category" />
+              </div>
+              <button class="btn btn-primary">Submit</button>
+              <div class="mt-4">
+                <a href="#" class="">
+                  <i class="fas fa-arrow-left"></i>
+                  <span>Back to category list</span>
+                </a>
+              </div>
+            </form>
+            <div id="responseMessage"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#contactForm').on('submit', function (e) {
+        e.preventDefault()
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'contact_form' %}",
+          data: $(this).serialize(),
+          success: function (response) {
+            $('#responseMessage').html('<div class="alert alert-success">Thanks, ' + response.name + '!</div>')
+          },
+          error: function (response) {
+            $('#responseMessage').html('<div class="alert alert-danger">Something went wrong.</div>')
+          }
+        })
+      })
+    })
+  </script>
+{% endblock %}

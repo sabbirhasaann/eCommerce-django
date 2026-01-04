@@ -1,0 +1,17 @@
+{
+  "name": "django",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "sass --no-source-map scss:static/css --quiet-deps",
+    "sass:watch": "sass --no-source-map --watch scss:static/css --quiet-deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.92.1"
+  }
+}

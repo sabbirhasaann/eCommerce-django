@@ -42,8 +42,8 @@
                     <div class="product-img">
                       <img src="{% static './img/' %}{{ product.image }}" alt="{{ product.name }}" />
                       <div class="product-label">
-                        <span class="sale">{{ product.label.sale }}</span>
-                        {% if product.label.isnew %}
+                        <span class="sale">{{ product.sale }}</span>
+                        {% if product.isnew %}
                           <span class="new">New</span>
                         {% endif %}
                       </div>
@@ -51,7 +51,7 @@
                     <div class="product-body">
                       <p class="product-category">{{ product.category }}</p>
                       <h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
-                      <h4 class="product-price">${{ product.price.new }}<del class="product-old-price">${{ product.price.old }}</del></h4>
+                      <h4 class="product-price">${{ product.price_new }}<del class="product-old-price">${{ product.price_old }}</del></h4>
                       <div class="product-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>

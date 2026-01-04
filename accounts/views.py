@@ -15,6 +15,9 @@ def login_view(request):
             return redirect('dashboard')
     return render(request, 'login.html', {'form': form})
 
+def login_overlay(request):
+    return render(request, 'login_overlay.html')
+
 def register_view(request):
     form = RegistrationForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():

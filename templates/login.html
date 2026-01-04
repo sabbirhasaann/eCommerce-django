@@ -1,13 +1,17 @@
 {% extends 'accounts/base.html' %}
 {% block title %}
-  Login
+Login
 {% endblock %}
 {% block content %}
-  <div style="margin-top: 100px;"></div>
-  <div class="container">
-    <div class="d-flex">
-      <div class="w-25"></div>
-      <div class="card shadow-md w-50">
+<div style="margin-top: 100px;"></div>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xl-6 col-md-6 d-flex justify-content-center align-items-center ">
+      Paragraph
+    </div>
+    <div class="col-md-6 col-xl-6">
+      <div class="card shadow-md bg-transparent">
         <div class="card-body text-center">
           <h2>Login</h2>
           <form action="" method="post">
@@ -25,7 +29,10 @@
           </form>
         </div>
       </div>
-      <div class="w-25"></div>
     </div>
   </div>
+  {% comment %} <div class="w-25"></div> {% endcomment %}
+  {% comment %}
+</div> {% endcomment %}
+</div>
 {% endblock %}

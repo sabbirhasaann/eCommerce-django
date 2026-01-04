@@ -3,9 +3,39 @@
   Dashboard
 {% endblock %}
 {% block content %}
-  <div class="">
-    <a href="{% url 'add-product' %}" class="btn btn-primary">Add Product</a>
+  <div class="container">
+    <div style="margin-top: 1.5rem;" class="text-center">
+      <h2>Welcome, {{ user.username }}!</h2>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-lg" style="border-radius: 1.5rem;">
+          <div class="card-body border">
+            <i class="fa fa-plus fa-2x mb-2 text-primary"></i>
+            <h5 class="card-title">Add Product</h5>
+            <a href="{% url 'add-product' %}" class="btn btn-primary mt-2">Add</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-lg" style="border-radius: 1.5rem;">
+          <div class="card-body">
+            <i class="fa fa-list fa-2x mb-2 text-success"></i>
+            <h5 class="card-title">Product List</h5>
+            <a href="#" class="btn btn-success mt-2">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-lg" style="border-radius: 1.5rem;">
+          <div class="card-body">
+            <i class="fa fa-shopping-cart fa-2x mb-2 text-warning"></i>
+            <h5 class="card-title">Orders</h5>
+            <a href="#" class="btn btn-warning mt-2">Orders</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h2>Welcome, {{ user.username }}!</h2>
-  <p>This is your dashboard. Only logged-in users can see this.</p>
 {% endblock %}

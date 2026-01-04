@@ -5,3 +5,4 @@
 .venv
 images/
 info.md
+node_modules/
